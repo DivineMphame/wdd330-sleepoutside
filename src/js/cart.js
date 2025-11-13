@@ -1,11 +1,13 @@
 import { getLocalStorage } from "./utils.mjs";
 
+// Render the contents of the cart page
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
+// Template for a cart item
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
