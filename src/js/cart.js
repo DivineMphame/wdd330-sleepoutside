@@ -1,10 +1,19 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage } from './utils.mjs';
 
 // Render the contents of the cart page
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage('so-cart');
+
+  //  Fix: check if the cart is empty
+  if (!cartItems || cartItems.length === 0) {
+    document.querySelector('.product-list').innerHTML =
+      '<p>Your cart is empty.</p>';
+    return;
+  }
+
+  // Otherwise, show the items
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  document.querySelector('.product-list').innerHTML = htmlItems.join('');
 }
 
 // Template for a cart item
